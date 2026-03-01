@@ -1,249 +1,111 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Zapatos | Catálogo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+@extends('layouts.app')
 
-    <!-- Estilos extra SOLO para que se vea tipo Amazon (puedes moverlos al CSS global si quieres) -->
-    <style>
-        .topbar{
-            display:flex;
-            gap:12px;
-            align-items:center;
-            justify-content:space-between;
-            flex-wrap:wrap;
-            margin-bottom:14px;
-        }
-        .search{
-            flex:1;
-            min-width:220px;
-            display:flex;
-            gap:10px;
-            align-items:center;
-        }
-        .search input{
-            width:100%;
-            padding:10px 12px;
-            border-radius:10px;
-            border:1px solid #e5e7eb;
-            outline:none;
-        }
-        .search input:focus{
-            border-color:#2563eb;
-            box-shadow:0 0 0 3px rgba(37,99,235,0.12);
-        }
-        .chip{
-            display:inline-flex;
-            align-items:center;
-            gap:8px;
-            padding:8px 10px;
-            border-radius:999px;
-            border:1px solid #e5e7eb;
-            background:#fff;
-            font-weight:700;
-            font-size:13px;
-            color:#111827;
-        }
-        .grid-products{
-            display:grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap:18px;
-            margin-top:16px;
-        }
-        .p-card{
-            border:1px solid #e5e7eb;
-            border-radius:14px;
-            background:#fff;
-            overflow:hidden;
-            transition:transform .15s ease, box-shadow .15s ease;
-        }
-        .p-card:hover{
-            transform: translateY(-4px);
-            box-shadow: 0 14px 26px rgba(0,0,0,.10);
-        }
-        .p-imgwrap{
-            background:#f8fafc;
-            padding:14px;
-        }
-        .p-img{
-            width:100%;
-            height:170px;
-            object-fit:contain;
-            display:block;
-        }
-        .p-body{
-            padding:14px;
-        }
-        .p-title{
-            margin:0 0 8px 0;
-            font-size:15px;
-            font-weight:800;
-            color:#111827;
-            line-height:1.25;
-            min-height:38px; /* hace que todas queden parejas */
-        }
-        .p-desc{
-            margin:0 0 10px 0;
-            color:#6b7280;
-            font-size:13px;
-            line-height:1.4;
-            min-height:36px;
-        }
-        .p-row{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:10px;
-            margin-top:10px;
-        }
-        .p-price{
-            font-size:18px;
-            font-weight:900;
-            color:#111827;
-        }
-        .p-badge{
-            font-size:12px;
-            font-weight:800;
-            padding:6px 10px;
-            border-radius:999px;
-            background:rgba(37,99,235,.10);
-            color:#2563eb;
-            border:1px solid rgba(37,99,235,.18);
-        }
-        .p-actions{
-            display:flex;
-            gap:10px;
-            margin-top:12px;
-        }
-        .btn{
-            display:inline-block;
-            text-decoration:none;
-            text-align:center;
-            border-radius:10px;
-            padding:9px 12px;
-            font-weight:900;
-            font-size:13px;
-            border:1px solid #e5e7eb;
-            color:#111827;
-            background:#fff;
-            flex:1;
-        }
-        .btn:hover{
-            background:#f9fafb;
-        }
-        .btn-primary{
-            background:#2563eb;
-            color:#fff;
-            border-color:#2563eb;
-        }
-        .btn-primary:hover{
-            background:#1e40af;
-            border-color:#1e40af;
-        }
-        .muted-small{
-            color:#6b7280;
-            font-size:12px;
-        }
-    </style>
-</head>
-<body>
+@section('title', 'Zapatos | Catálogo')
 
-<div class="container">
-    <div class="card">
-
-        <div class="topbar">
+@section('content')
+<div class="mx-auto max-w-6xl px-4 py-8">
+    <div class="flex flex-col gap-6">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
-                <h1 class="page-title" style="margin:0;">Zapatos</h1>
-                <div class="muted-small">Catálogo demo (3 productos) • estilo ecommerce</div>
+                <p class="text-xs tracking-[0.25em] uppercase text-white/60">Catálogo</p>
+                <h1 class="mt-2 text-2xl md:text-3xl font-semibold tracking-tight">Zapatos</h1>
+                <p class="mt-2 text-white/60">Modelos seleccionados con estética premium.</p>
             </div>
 
-            <div class="search">
-                <input type="text" placeholder="Buscar (demo: no filtra aún)">
-                <span class="chip">🚚 Envío rápido</span>
-            </div>
+            <div class="flex gap-3">
+                <a href="{{ url('/product/create') }}"
+                   class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm text-white/90 hover:bg-white/10 transition">
+                    Agregar / Comprar
+                </a>
 
-            <a href="/product/create" class="btn btn-primary" style="flex:0 0 auto;">+ Agregar</a>
+                <a href="https://wa.me/573183221806?text={{ urlencode('Hola, quiero cotizar unos zapatos. ¿Me compartes disponibilidad y precios?') }}"
+                   target="_blank"
+                   class="inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-black hover:scale-[1.01] transition">
+                    WhatsApp
+                </a>
+            </div>
         </div>
 
-        
-        <div class="grid-products">
-
-            <!-- 1) Adidas -->
-            <div class="p-card">
-                <div class="p-imgwrap">
-                    <img src="{{ asset('img/zapatos/adidas.jpg') }}" alt="Adidas Forum Low" class="p-img">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {{-- 1) Nike --}}
+            <div class="rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition shadow-[0_16px_50px_rgba(0,0,0,0.35)]">
+                <div class="aspect-[4/3] bg-black/30 p-4">
+                    <img src="{{ asset('img/zapatos/nike.jpg') }}" alt="Nike Air Force" class="h-full w-full object-contain">
                 </div>
-                <div class="p-body">
-                    <div class="p-badge">Disponible</div>
-                    <h3 class="p-title">Adidas Forum Low</h3>
-                    <p class="p-desc">Estilo urbano clásico, cómodo y versátil para diario.</p>
-
-                    <div class="p-row">
-                        <div class="p-price">$480.000</div>
-                        <div class="muted-small">⭐ 4.7</div>
+                <div class="p-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs px-3 py-1 rounded-full border border-white/10 bg-black/20 text-white/70">Top venta</span>
+                        <span class="text-xs text-white/50">⭐ 4.8</span>
                     </div>
-
-                    <div class="p-actions">
-                        <a href="/product/adidas" class="btn btn-primary">Ver detalle</a>
-                        <a href="/product/create" class="btn">Comprar</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2) Nike -->
-            <div class="p-card">
-                <div class="p-imgwrap">
-                    <img src="{{ asset('img/zapatos/nike.jpg') }}" alt="Nike Air Max Plus" class="p-img">
-                </div>
-                <div class="p-body">
-                    <div class="p-badge">Disponible</div>
-                    <h3 class="p-title">Nike Air Max Plus</h3>
-                    <p class="p-desc">Diseño deportivo con amortiguación para uso diario.</p>
-
-                    <div class="p-row">
-                        <div class="p-price">$520.000</div>
-                        <div class="muted-small">⭐ 4.8</div>
-                    </div>
-
-                    <div class="p-actions">
-                        <a href="/product/nike" class="btn btn-primary">Ver detalle</a>
-                        <a href="/product/create" class="btn">Comprar</a>
+                    <h3 class="mt-3 text-lg font-semibold">Nike Air Force</h3>
+                    <p class="mt-1 text-sm text-white/60">Clásico urbano, cómodo y combinable.</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-base font-semibold">$350.000</span>
+                        <div class="flex gap-2">
+                            <a href="{{ url('/product/nike') }}" class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition">Ver</a>
+                            <a target="_blank"
+                               href="https://wa.me/573183221806?text={{ urlencode('Hola, quiero cotizar el Nike Air Force. ¿Qué tallas tienes y precio final?') }}"
+                               class="rounded-full bg-white text-neutral-950 px-4 py-2 text-sm font-semibold hover:scale-[1.01] transition">
+                                Cotizar
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3) Off-White -->
-            <div class="p-card">
-                <div class="p-imgwrap">
-                    <img src="{{ asset('img/zapatos/off-white.jpg') }}" alt="Off-White Low" class="p-img">
+            {{-- 2) Adidas --}}
+            <div class="rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition shadow-[0_16px_50px_rgba(0,0,0,0.35)]">
+                <div class="aspect-[4/3] bg-black/30 p-4">
+                    <img src="{{ asset('img/zapatos/adidas.jpg') }}" alt="Adidas Ultraboost" class="h-full w-full object-contain">
                 </div>
-                <div class="p-body">
-                    <div class="p-badge">Premium</div>
-                    <h3 class="p-title">Off-White Low</h3>
-                    <p class="p-desc">Modelo premium con estilo moderno y materiales top.</p>
-
-                    <div class="p-row">
-                        <div class="p-price">$690.000</div>
-                        <div class="muted-small">⭐ 4.9</div>
+                <div class="p-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs px-3 py-1 rounded-full border border-white/10 bg-black/20 text-white/70">Comodidad</span>
+                        <span class="text-xs text-white/50">⭐ 4.7</span>
                     </div>
+                    <h3 class="mt-3 text-lg font-semibold">Adidas Ultraboost</h3>
+                    <p class="mt-1 text-sm text-white/60">Running & lifestyle con gran amortiguación.</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-base font-semibold">$520.000</span>
+                        <div class="flex gap-2">
+                            <a href="{{ url('/product/adidas') }}" class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition">Ver</a>
+                            <a target="_blank"
+                               href="https://wa.me/573183221806?text={{ urlencode('Hola, quiero cotizar el Adidas Ultraboost. ¿Qué tallas tienes y precio final?') }}"
+                               class="rounded-full bg-white text-neutral-950 px-4 py-2 text-sm font-semibold hover:scale-[1.01] transition">
+                                Cotizar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="p-actions">
-                        <a href="/product/off-white" class="btn btn-primary">Ver detalle</a>
-                        <a href="/product/create" class="btn">Comprar</a>
+            {{-- 3) Off-White --}}
+            <div class="rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition shadow-[0_16px_50px_rgba(0,0,0,0.35)]">
+                <div class="aspect-[4/3] bg-black/30 p-4">
+                    <img src="{{ asset('img/zapatos/off-white.jpg') }}" alt="Off-White Low" class="h-full w-full object-contain">
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs px-3 py-1 rounded-full border border-white/10 bg-black/20 text-white/70">Premium</span>
+                        <span class="text-xs text-white/50">⭐ 4.9</span>
+                    </div>
+                    <h3 class="mt-3 text-lg font-semibold">Off-White Low</h3>
+                    <p class="mt-1 text-sm text-white/60">Estilo moderno con materiales top.</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-base font-semibold">$690.000</span>
+                        <div class="flex gap-2">
+                            <a href="{{ url('/product/off-white') }}" class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition">Ver</a>
+                            <a target="_blank"
+                               href="https://wa.me/573183221806?text={{ urlencode('Hola, quiero cotizar el Off-White Low. ¿Qué tallas tienes y precio final?') }}"
+                               class="rounded-full bg-white text-neutral-950 px-4 py-2 text-sm font-semibold hover:scale-[1.01] transition">
+                                Cotizar
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
-
-        <div style="margin-top:16px;">
-            <a class="back" href="/">← Volver al inicio</a>
-        </div>
-
     </div>
 </div>
-
-</body>
-</html>
+@endsection
