@@ -9,5 +9,6 @@ use Illuminate\TeSting\Fluent\Concerns\Has;
 class Category extends Model
 {
     use HasFactory;
+    
     protected $fillable = ['name', 'description'];
 }
