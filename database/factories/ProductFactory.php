@@ -12,19 +12,11 @@ class ProductFactory extends Factory
 
     public function definition(): array
     {
-        $marcas = ['Nike','Adidas','Puma','New Balance','Jordan','Reebok','Vans','Converse','ASICS','Fila'];
-        $modelos = ['Air Force 1','Ultraboost','RS-X','Air Max','Classic','Runner','Street','Court','Low','High'];
-        $color = ['Blanco','Negro','Gris','Azul','Rojo','Beige','Verde'];
-
-        $name = $this->faker->randomElement($marcas).' '.$this->faker->randomElement($modelos).' '.$this->faker->randomElement($color);
-
-        $categoryId = Category::inRandomOrder()->value('id');
-
         return [
-            'name' => $name,
-            'description' => $this->faker->sentence(14),
-            'price' => $this->faker->numberBetween(150000, 950000),
-            'category_id' => $categoryId ?? Category::factory(),
+            'name' => fake()->name(),
+            'description' => fake()->paragraph(),
+            'price' => fake()->randomFloat(2, 100, 1000000),
+            'category_id' => Category::inRandomOrder()->value('id') ?? Category::factory(),
         ];
     }
-} 
+}
