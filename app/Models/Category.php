@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Product;
+use App\Models\Category;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\TeSting\Fluent\Concerns\Has;
