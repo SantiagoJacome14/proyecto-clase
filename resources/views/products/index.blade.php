@@ -4,9 +4,16 @@
 
 <div class="max-w-6xl mx-auto py-10">
 
-<h2 class="text-3xl font-bold mb-6">Productos</h2>
+<div class="flex items-center justify-between mb-6">
+    <h2 class="text-3xl font-bold">Productos</h2>
 
-<form method="GET" action="{{ route('products.index') }}" class="mb-6">
+    <a href="{{ route('products.create') }}"
+       class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold">
+        + Agregar producto
+    </a>
+</div>
+
+<form method="GET" action="{{ route('products.index') }}" class="mb-6 flex gap-2">
 <input
 name="q"
 value="{{ request('q') }}"

@@ -14,8 +14,8 @@
                 <p class="text-sm font-semibold text-white/80">Navegación</p>
                 <div class="mt-3 flex flex-col gap-2 text-sm text-white/60">
                     <a class="hover:text-white transition" href="{{ url('/') }}">Inicio</a>
-                    <a class="hover:text-white transition" href="{{ url('/product') }}">Productos</a>
-                    <a class="hover:text-white transition" href="{{ url('/product/create') }}">Agregar</a>
+                    <a class="hover:text-white transition" href="{{ route('products.index') }}">Productos</a>
+                    <a class="hover:text-white transition" href="{{ route('products.create') }}">Agregar</a>
                 </div>
             </div>
 
