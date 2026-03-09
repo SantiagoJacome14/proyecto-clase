@@ -25,7 +25,13 @@ Buscar
 
 <div class="border rounded p-4">
 
-<img src="{{ asset($producto->image) }}" class="mb-3">
+@if($producto->image)
+    <img src="{{ asset('storage/' . $producto->image) }}"
+        alt="Sneakers {{ $producto->name }}" class="product-image">
+@else
+    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+        alt="Sneakers deportivos" class="product-image">
+@endif
 
 <h3 class="font-bold">
 {{$producto->name}}
