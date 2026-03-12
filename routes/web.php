@@ -27,4 +27,6 @@ Route::prefix('products')->controller(ProductController::class)->group(function 
 
     Route::get('/{product}', 'show')->name('products.show');
 
+    Route::delete('/{product}', 'destroy')->name('products.destroy');
+
 });

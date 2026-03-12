@@ -89,4 +89,11 @@ class ProductController extends Controller
             'product' => $product
         ]);
     }
+    public function destroy(Product $producto)
+{
+    $producto->delete();
+
+    return redirect()->route('products.index')
+        ->with('success', 'Producto eliminado correctamente');
+}
 }

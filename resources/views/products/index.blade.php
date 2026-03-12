@@ -53,6 +53,16 @@ class="bg-black text-white px-3 py-2 mt-3 inline-block rounded">
 Ver producto
 </a>
 
+<form action="{{ route('products.destroy', $producto->id) }}" method="POST">
+    @csrf
+    @method('DELETE')
+
+    <button type="submit"
+        class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 mt-2 rounded w-full">
+        Eliminar
+    </button>
+</form>
+
 </div>
 
 @endforeach
