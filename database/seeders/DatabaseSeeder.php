@@ -21,11 +21,10 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ProductSeeder::class,
         ]); */
-        //Category::factory(1000)->create();
-        // User::factory(1000)->create();
-        Product::factory(50)->create();
-        // Cartitem::factory(20000)->create();
-        // //Category::factory(10000)->create();
+          //Category::factory(100)->create();
+       //Product::factory(1000)->create();
+       //User::factory(100)->create();
+       //CartItem::factory(100)->create();
 
     }
 }

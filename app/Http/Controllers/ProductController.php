@@ -30,9 +30,16 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // Compatibilidad con ambos formularios:
-        // viejo: nombre, descripcion, precio, categoria, imagen
-        // nuevo: name, description, price, category_id, image
+        //VALIDACION DE LOS DATOS
+        $request->validate([
+            'nombre' => 'required|min:5|max:250',
+            'precio' => 'required|numeric',
+            'descripcion' => 'required',
+            'imagen' => 'required|image',
+            'categoria' => 'required|exists:categories,id',
+        ]);
+
+
 
         $name = $request->input('name', $request->input('nombre'));
         $description = $request->input('description', $request->input('descripcion'));

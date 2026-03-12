@@ -18,35 +18,43 @@
         <label class="block text-sm text-white/70 mb-2" for="name">Nombre</label>
         <input id="name" name="name" type="text" value="{{ old('name') }}"
                class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none"
-               placeholder="Ej: Nike Air Force 1" required>
-        @error('name') <p class="text-sm text-red-400 mt-2">{{ $message }}</p> @enderror
+               placeholder="Ej: Nike Air Force 1" >
+        @error('name')
+        <span style="color: red; font-size: 14px;">{{ $message }}</span> 
+        @enderror
       </div>
 
       <div>
         <label class="block text-sm text-white/70 mb-2" for="price">Precio</label>
         <input id="price" name="price" type="number" value="{{ old('price') }}"
                class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none"
-               placeholder="350000" required>
-        @error('price') <p class="text-sm text-red-400 mt-2">{{ $message }}</p> @enderror
+               placeholder="350000" >
+        @error('price') 
+         <span style="color: red; font-size: 14px;">{{ $message }}</span>
+         @enderror
       </div>
+      //Descripción del producto
+    <div class="form-group">
+      <label for="descripcion">Descripción <span class="required">*</span></label>
+      <textarea id="descripcion" name="descripcion" placeholder="Ingresa una descripción detallada del producto..."></textarea>
+      <span class="help-text">Máximo 500 caracteres</span>
+      @error('descripcion')
+      <span style="color: red; font-size: 14px;">{{ $message }}</span> 
+      @enderror
+    </div>
 
-      <div>
-        <label class="block text-sm text-white/70 mb-2" for="description">Descripción</label>
-        <textarea id="description" name="description" rows="4"
-                  class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none"
-                  placeholder="Descripción del producto...">{{ old('description') }}</textarea>
-        @error('description') <p class="text-sm text-red-400 mt-2">{{ $message }}</p> @enderror
-      </div>
-
+    //Imagen del producto 
       <div>
         <label class="block text-sm text-white/70 mb-2" for="image">Imagen</label>
         <input id="image" name="image" type="file" accept="image/*"
                class="block w-full text-sm text-white/70 file:mr-4 file:rounded-full file:border-0
                       file:bg-white file:px-4 file:py-2 file:text-sm file:font-semibold file:text-black
                       hover:file:opacity-90">
-        @error('image') <p class="text-sm text-red-400 mt-2">{{ $message }}</p> @enderror
+        @error('image')
+          <span style="color: red; font-size: 14px;">{{ $message }}</span> 
+          @enderror
       </div>
-
+      //Estado
       <div>
         <label class="block text-sm text-white/70 mb-2" for="category_id">Categoría</label>
         <select id="category_id" name="category_id"
@@ -57,7 +65,9 @@
             </option>
           @endforeach
         </select>
-        @error('category_id') <p class="text-sm text-red-400 mt-2">{{ $message }}</p> @enderror
+        @error('category_id')
+        <span style="color: red; font-size: 14px;">{{ $message }}</span>
+        > @enderror
       </div>
 
       <button type="submit"
