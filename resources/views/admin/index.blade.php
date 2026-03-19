@@ -16,13 +16,13 @@
         </div>
 
         <div class="admin-card">
-            <h3>Estado del sistema</h3>
-            <p>Activo</p>
+            <h3>Total de categorías</h3>
+            <p>{{ $totalCategorias }}</p>
         </div>
 
         <div class="admin-card">
-            <h3>Catálogo</h3>
-            <p>Disponible para clientes</p>
+            <h3>Estado del sistema</h3>
+            <p>Activo</p>
         </div>
     </div>
 

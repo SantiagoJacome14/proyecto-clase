@@ -5,7 +5,8 @@
 
     <ul class="admin-navbar-links">
         <li><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li><a href="{{ route('products.index') }}">Ver catálogo</a></li>
+        <li><a href="{{ route('admin.categories.index') }}">Categorías</a></li>
+        <li><a href="{{ route('products.index') }}">Productos</a></li>
         <li><a href="{{ route('home') }}">Ir al inicio</a></li>
     </ul>
 </nav>
