@@ -1,74 +1,90 @@
 @extends('layouts.app')
 
+@section('title', 'Zapatos | Catálogo')
+
 @section('content')
+<div class="flex flex-col gap-6">
 
-<div class="max-w-6xl mx-auto py-10">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+            <p class="text-xs tracking-[0.25em] uppercase text-white/60">Catálogo</p>
+            <h1 class="mt-2 text-2xl md:text-3xl font-semibold tracking-tight">Zapatos</h1>
+            <p class="mt-2 text-white/60">Modelos seleccionados con estética premium.</p>
+        </div>
 
-<div class="flex items-center justify-between mb-6">
-    <h2 class="text-3xl font-bold">Productos</h2>
+        <div class="flex gap-3">
+            <a href="{{ route('products.create') }}"
+               class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm text-white/90 hover:bg-white/10 transition">
+                Agregar / Comprar
+            </a>
 
-    <a href="{{ route('products.create') }}"
-       class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold">
-        + Agregar producto
-    </a>
+            <a href="https://wa.me/573183221806?text={{ urlencode('Hola, quiero cotizar unos zapatos. ¿Me compartes disponibilidad y precios?') }}"
+               target="_blank"
+               class="inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-black hover:scale-[1.01] transition">
+                WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        @foreach ($misProductos as $product)
+            <div class="rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/7 transition shadow-[0_16px_50px_rgba(0,0,0,0.35)]">
+
+                <div class="aspect-[4/3] bg-black/30 p-4">
+                    @if (!empty($product->image))
+                        <img src="{{ asset('storage/' . $product->image) }}"
+                             alt="{{ $product->name }}"
+                             class="h-full w-full object-contain"
+                             onerror="this.onerror=null;this.src='{{ asset('img/zapatos/nike.jpg') }}';">
+                    @else
+                        <img src="{{ asset('img/zapatos/nike.jpg') }}"
+                             alt="Producto por defecto"
+                             class="h-full w-full object-contain">
+                    @endif
+                </div>
+
+                <div class="p-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs px-3 py-1 rounded-full border border-white/10 bg-black/20 text-white/70">
+                            Disponible
+                        </span>
+                        <span class="text-xs text-white/50">
+                            ID {{ $product->id }}
+                        </span>
+                    </div>
+
+                    <h3 class="mt-3 text-lg font-semibold">
+                        {{ $product->name }}
+                    </h3>
+
+                    <p class="mt-1 text-sm text-white/60">
+                        {{ $product->description }}
+                    </p>
+
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-base font-semibold">
+                            ${{ number_format($product->price, 0, ',', '.') }}
+                        </span>
+
+                        <div class="flex gap-2">
+                            <a href="{{ route('products.show', $product->id) }}"
+                               class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition">
+                                Ver
+                            </a>
+
+                            <a target="_blank"
+                               href="https://wa.me/573183221806?text={{ urlencode('Hola, quiero cotizar ' . $product->name) }}"
+                               class="rounded-full bg-white text-neutral-950 px-4 py-2 text-sm font-semibold hover:scale-[1.01] transition">
+                                Cotizar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        @endforeach
+
+    </div>
 </div>
-
-<form method="GET" action="{{ route('products.index') }}" class="mb-6 flex gap-2">
-<input
-name="q"
-value="{{ request('q') }}"
-placeholder="Buscar producto"
-class="border p-2 rounded"
-/>
-
-<button class="bg-black text-white px-4 py-2 rounded">
-Buscar
-</button>
-</form>
-
-<div class="grid grid-cols-3 gap-6">
-
-@foreach($misProductos as $producto)
-
-<div class="border rounded p-4">
-
-@if($producto->image)
-    <img src="{{ asset('storage/' . $producto->image) }}"
-        alt="Sneakers {{ $producto->name }}" class="product-image">
-@else
-    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
-        alt="Sneakers deportivos" class="product-image">
-@endif
-
-<h3 class="font-bold">
-{{$producto->name}}
-</h3>
-
-<p class="text-gray-600">
-${{$producto->price}}
-</p>
-
-<a href="{{ route('products.show', $producto->id) }}"
-class="bg-black text-white px-3 py-2 mt-3 inline-block rounded">
-Ver producto
-</a>
-
-<form action="{{ route('products.destroy', $producto->id) }}" method="POST">
-    @csrf
-    @method('DELETE')
-
-    <button type="submit"
-        class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 mt-2 rounded w-full">
-        Eliminar
-    </button>
-</form>
-
-</div>
-
-@endforeach
-
-</div>
-
-</div>
-
 @endsection

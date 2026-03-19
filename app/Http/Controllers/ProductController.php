@@ -30,7 +30,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        //VALIDACION DE LOS DATOS
         $request->validate([
             'nombre' => 'required|min:5|max:250',
             'precio' => 'required|numeric',
@@ -38,8 +37,6 @@ class ProductController extends Controller
             'imagen' => 'required|image',
             'categoria' => 'required|exists:categories,id',
         ]);
-
-
 
         $name = $request->input('name', $request->input('nombre'));
         $description = $request->input('description', $request->input('descripcion'));
@@ -81,19 +78,20 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
-    public function show($producto)
+    public function show($product)
     {
-        $product = Product::findOrFail($producto);
+        $product = Product::findOrFail($product);
 
         return view('products.show', [
             'product' => $product
         ]);
     }
-    public function destroy(Product $producto)
-{
-    $producto->delete();
 
-    return redirect()->route('products.index')
-        ->with('success', 'Producto eliminado correctamente');
-}
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return redirect()->route('products.index')
+            ->with('success', 'Producto eliminado correctamente');
+    }
 }
