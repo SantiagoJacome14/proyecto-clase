@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Models\Product;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,17 @@ Route::prefix('admin')->group(function () {
         Route::delete('/{category}', 'destroy')->name('admin.categories.destroy');
     });
 
+});
+/*
+|--------------------------------------------------------------------------
+| Cart
+|--------------------------------------------------------------------------
+*/
+Route::prefix('cart')->controller(CartController::class)->group(function () {
+    Route::get('/', 'index')->name('cart.index');
+    Route::post('/add/{product}', 'add')->name('cart.add');
+    Route::delete('/remove/{id}', 'remove')->name('cart.remove');
+    Route::delete('/clear', 'clear')->name('cart.clear');
 });
 
 /*
