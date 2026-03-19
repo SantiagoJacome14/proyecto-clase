@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
 use App\Models\Product;
 
 /*
@@ -13,6 +14,13 @@ Route::get('/', function () {
     $products = Product::all();
     return view('welcome', compact('products'));
 })->name('home');
+
+/*
+|--------------------------------------------------------------------------
+| Admin
+|--------------------------------------------------------------------------
+*/
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +38,4 @@ Route::prefix('products')->controller(ProductController::class)->group(function 
     Route::get('/{product}', 'show')->name('products.show');
 
     Route::delete('/{product}', 'destroy')->name('products.destroy');
-
 });
